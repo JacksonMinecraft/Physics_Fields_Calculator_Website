@@ -1,0 +1,54 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+table {
+  width: 70%;
+}
+
+td {
+  padding: 10px;
+}
+
+input, select {
+  border: 1px solid darkgoldenrod;
+  border-radius: 10px;
+  outline: none;
+  padding: 5px;
+}
+
+input:focus, select:focus {
+  background-color: gold;
+}
+
+.tabs {
+  background-color: dimgrey;
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
+  float: left;
+  font-size: 32px;
+  outline: none;
+  padding: 15px;
+  width: 25%;
+}
+
+#homeButton:hover    {background-color: darkgreen;}
+#gravitational:hover {background-color: darkgoldenrod;}
+#electric:hover      {background-color: darkblue;}
+#magnetic:hover      {background-color: darkcyan;}
+
+.content {
+  color: black;
+  display: none;
+  font-size: 20px;
+  height: 100%;
+  padding: 80px 40px;
+}
+
+#homeContent {background-color: lightgreen;}
+#gravity     {background-color: palegoldenrod;}
+#electricity {background-color: lightskyblue;}
+#magnets     {background-color: lightcyan;}

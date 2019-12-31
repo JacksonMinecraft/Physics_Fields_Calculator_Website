@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SPH4U Fields Unit Calculator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <button id="homeButton"    class="tabs" onclick="openPage('homeContent', this, 'green')">Home</button>
+  <button id="gravitational" class="tabs" onclick="openPage('gravity', this, 'goldenrod')"   >Gravitational Fields</button>
+  <button id="electric"      class="tabs" onclick="openPage('electricity', this, 'blue')">Electric Fields</button>
+  <button id="magnetic"      class="tabs" onclick="openPage('magnets', this, 'cyan')"   >Magnetic Fields</button>
+
+  <div id="homeContent" class="content">
+    <h1>SPH4U Fields Unit Calculator</h1>
+  </div>
+
+  <div id="gravity" class="content">
+    <h2>Chapter 1: Gravitational Fields</h2>
+    <form>
+      <table>
+        <tr>
+          <td>The setting of the problem is:
+          <select name="earth">
+            <option value="on">On Earth</option>
+            <option value="off">Not On Earth</option>
+          </select></td>
+          <td>Calculate remaining variables: <input type="submit" value="Calculate"></td>
+        </tr>
+        <tr>
+          <td>ΣF<sub>net</sub> = <input id="fn1" type="number" name="ΣF" min="0" value="0">N, θ =
+          <input id="fn2" type="number" name="ΣFθ" min="0" max="360">°</td>
+          <td>g = <input id="g" type="number" name="g" min="0" value="0">N/kg</td>
+        </tr>
+        <tr>
+          <td>F<sub>g</sub> = <input id="fg1" type="number" name="Fg" min="0" value="0">N, θ =
+          <input id="fg2" type="number" name="Fgθ" min="0" max="360">°</td>
+          <td>m<sub>1</sub> = <input id="m1" type="number" name="m1" min="0" value="0">kg</td>
+        </tr>
+        <tr>
+          <td>F<sub>c</sub> = <input id="fc1" type="number" name="Fc" min="0" value="0">N, θ =
+          <input id="fc2" type="number" name="Fcθ" min="0" max="360">°</td>
+          <td>m<sub>2</sub> = <input id="m2" type="number" name="m2" min="0" value="0">kg</td>
+        </tr>
+        <tr>
+          <td>v = <input id="v1" type="number" name="v" min="0" value="0">m/s, θ =
+          <input id="v2" type="number" name="vθ" min="0" max="360">°</td>
+          <td>r = <input id="r" type="number" name="r" min="0" value="0">m</td>
+        </tr>
+        <tr>
+          <td>a = <input id="a1" type="number" name="a" min="0" value="0">m/s<sup>2</sup>, θ =
+          <input id="a2" type="number" name="aθ" min="0" max="360">°</td>
+          <td>T = <input id="t" type="number" name="T" min="0" value="0">s</td>
+        </tr>
+        <tr>
+          <td>a<sub>c</sub> = <input id="ac" type="number" name="ac" min="0" value="0">m/s<sup>2</sup></td>
+          <td>f = <input id="f" type="number" name="r" min="0" value="0">c/s</td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <div id="electricity" class="content">
+    <h2>Chapter 2: Electric Fields</h2>
+    <form>
+
+    </form>
+  </div>
+
+  <div id="magnets" class="content">
+    <h2>Chapter 3: Magnetic Fields</h2>
+    <form>
+
+    </form>
+  </div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>
