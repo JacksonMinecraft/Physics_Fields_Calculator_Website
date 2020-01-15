@@ -5,22 +5,60 @@ body, html {
 }
 
 table {
-  width: 70%;
+  width: 86%;
 }
 
 td {
   padding: 10px;
+  width: 43%;
 }
 
-input, select {
-  border: 1px solid darkgoldenrod;
+#submit1, #submit2, #submit3 {
+  background-color: white;
+}
+
+#submit1:hover, #submit2:hover , #submit3:hover{
+  background-color: lightgrey;
+}
+
+#submit1:active, #submit2:active , #submit3:active{
+  background-color: grey;
+}
+
+input, #submit1, #submit2, #submit3 {
   border-radius: 10px;
   outline: none;
   padding: 5px;
 }
 
-input:focus, select:focus {
+.inGrav, #submit1 {
+  border: 1px solid darkgoldenrod;
+}
+
+.inElec, #submit2 {
+  border: 1px solid darkblue;
+}
+
+.inMagn, #submit3 {
+  border: 1px solid darkred;
+}
+
+.inGrav:focus {
   background-color: gold;
+}
+
+.inElec:focus {
+  background-color: blue;
+}
+
+.inMagn:focus {
+  background-color: red;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .tabs {
@@ -38,7 +76,7 @@ input:focus, select:focus {
 #homeButton:hover    {background-color: darkgreen;}
 #gravitational:hover {background-color: darkgoldenrod;}
 #electric:hover      {background-color: darkblue;}
-#magnetic:hover      {background-color: darkcyan;}
+#magnetic:hover      {background-color: darkred;}
 
 .content {
   color: black;
@@ -51,4 +89,4 @@ input:focus, select:focus {
 #homeContent {background-color: lightgreen;}
 #gravity     {background-color: palegoldenrod;}
 #electricity {background-color: lightskyblue;}
-#magnets     {background-color: lightcyan;}
+#magnets     {background-color: indianred;}

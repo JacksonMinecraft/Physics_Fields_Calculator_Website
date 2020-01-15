@@ -4,7 +4,6 @@
   <title>SPH4U Fields Unit Calculator</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -12,69 +11,125 @@
   <button id="homeButton"    class="tabs" onclick="openPage('homeContent', this, 'green')">Home</button>
   <button id="gravitational" class="tabs" onclick="openPage('gravity', this, 'goldenrod')"   >Gravitational Fields</button>
   <button id="electric"      class="tabs" onclick="openPage('electricity', this, 'blue')">Electric Fields</button>
-  <button id="magnetic"      class="tabs" onclick="openPage('magnets', this, 'cyan')"   >Magnetic Fields</button>
+  <button id="magnetic"      class="tabs" onclick="openPage('magnets', this, 'red')"   >Magnetic Fields</button>
 
   <div id="homeContent" class="content">
     <h1>SPH4U Fields Unit Calculator</h1>
+    <h3>Notes:</h3>
+    <ul>
+      <li>Enter the variables with numbered subscripts, from subscript 1 to 3 (m, q, r)</li>
+      <ul>
+        <li>e.g. Use m<sub>1</sub> before using m<sub>2</sub> and m<sub>3</sub></li>
+      </ul>
+      <li>For question with two forces acting on a mass or charge, the force is acting on the third mass or charge</li>
+      <li>The angles are viewed the same way as in the CAST rule, from quadrant 1 to 4, and are all in degrees</li>
+      <li>Use the other two tabs to calculate other variables that are not on the magnetic fields tab</li>
+      <ul>
+        <li>e.g. Calculate F<sub>c</sub> in the electric fields tab and then sub that in for F<sub>m</sub> in the magnetic fields tab</li>
+      </ul>
+      <li>This website is not able to calculate variables for questions with more than one radius other than the force or field strength</li>
+      <ul>
+        <li>e.g. For the equation g = G * (m<sub>1</sub> / r<sub>1</sub><sup>2</sup> + m<sub>2</sub> / r<sub>2</sub><sup>2</sup>), it can calculate g, but not m<sub>1</sub>, r<sub>1</sub>, m<sub>2</sub>, or r<sub>2</sub></li>
+      </ul>
+    </ul>
   </div>
 
   <div id="gravity" class="content">
     <h2>Chapter 1: Gravitational Fields</h2>
-    <form>
       <table>
         <tr>
-          <td>The setting of the problem is:
-          <select name="earth">
-            <option value="on">On Earth</option>
-            <option value="off">Not On Earth</option>
-          </select></td>
-          <td>Calculate remaining variables: <input type="submit" value="Calculate"></td>
+          <td>Calculate remaining variables: <button id="submit1" type="button" onclick="calculateGrav()">Calculate</button></td>
+          <td>ΣF<sub>net</sub>, F<sub>g</sub>, or F<sub>c</sub> = <input type="number" id="f1" class="inGrav" min="0">N, θ =
+          <input type="number" id="f2" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
         <tr>
-          <td>ΣF<sub>net</sub> = <input id="fn1" type="number" name="ΣF" min="0" value="0">N, θ =
-          <input id="fn2" type="number" name="ΣFθ" min="0" max="360">°</td>
-          <td>g = <input id="g" type="number" name="g" min="0" value="0">N/kg</td>
+          <td>m<sub>1</sub> = <input type="number" id="m1" class="inGrav" min="0">kg</td>
+          <td>g, a, or a<sub>c</sub> = <input type="number" id="a1" class="inGrav" min="0">m/s<sup>2</sup>, θ =
+          <input type="number" id="a2" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
         <tr>
-          <td>F<sub>g</sub> = <input id="fg1" type="number" name="Fg" min="0" value="0">N, θ =
-          <input id="fg2" type="number" name="Fgθ" min="0" max="360">°</td>
-          <td>m<sub>1</sub> = <input id="m1" type="number" name="m1" min="0" value="0">kg</td>
+          <td>m<sub>2</sub> = <input type="number" id="m2" class="inGrav" min="0">kg</td>
+          <td>v = <input type="number" id="v1" class="inGrav" min="0">m/s, θ =
+          <input type="number" id="v2" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
         <tr>
-          <td>F<sub>c</sub> = <input id="fc1" type="number" name="Fc" min="0" value="0">N, θ =
-          <input id="fc2" type="number" name="Fcθ" min="0" max="360">°</td>
-          <td>m<sub>2</sub> = <input id="m2" type="number" name="m2" min="0" value="0">kg</td>
+          <td>m<sub>3</sub> = <input type="number" id="m3" class="inGrav" min="0">kg</td>
+          <td>r<sub>1</sub> = <input type="number" id="r1" class="inGrav" min="0">m, θ =
+          <input type="number" id="r1a" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
         <tr>
-          <td>v = <input id="v1" type="number" name="v" min="0" value="0">m/s, θ =
-          <input id="v2" type="number" name="vθ" min="0" max="360">°</td>
-          <td>r = <input id="r" type="number" name="r" min="0" value="0">m</td>
+          <td>t = <input type="number" id="t" class="inGrav" min="0">s</td>
+          <td>r<sub>2</sub> = <input type="number" id="r2" class="inGrav" min="0">m, θ =
+          <input type="number" id="r2a" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
         <tr>
-          <td>a = <input id="a1" type="number" name="a" min="0" value="0">m/s<sup>2</sup>, θ =
-          <input id="a2" type="number" name="aθ" min="0" max="360">°</td>
-          <td>T = <input id="t" type="number" name="T" min="0" value="0">s</td>
-        </tr>
-        <tr>
-          <td>a<sub>c</sub> = <input id="ac" type="number" name="ac" min="0" value="0">m/s<sup>2</sup></td>
-          <td>f = <input id="f" type="number" name="r" min="0" value="0">c/s</td>
+          <td>f = <input type="number" id="f" class="inGrav" min="0">c/s</td>
+          <td>r<sub>3</sub> = <input type="number" id="r3" class="inGrav" min="0">m, θ =
+          <input type="number" id="r3a" class="inGrav" min="0" max="360">° ATH</td>
         </tr>
       </table>
-    </form>
   </div>
 
   <div id="electricity" class="content">
     <h2>Chapter 2: Electric Fields</h2>
-    <form>
-
-    </form>
+    <table>
+      <tr>
+        <td>Calculate remaining variables: <button id="submit2" type="button" onclick="calculateElec()">Calculate</button></td>
+        <td>v = <input type="number" id="v3" class="inElec" min="0">m/s</td>
+      </tr>
+      <tr>
+        <td>E<sub>E</sub>, or E<sub>k</sub> = <input type="number" id="en1" class="inElec" min="0">J</td>
+        <td>ΣF<sub>net</sub>, or F<sub>E</sub> = <input type="number" id="f3" class="inElec" min="0">N, θ =
+        <input type="number" id="f4" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+      <tr>
+        <td>V = <input type="number" id="vo1" class="inElec" min="0">V</td>
+        <td>ε = <input type="number" id="e1" class="inElec" min"0">N/C, θ =
+        <input type="number" id="e2" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+      <tr>
+        <td>m<sub>1</sub> = <input type="number" id="m4" class="inElec" min="0">kg</td>
+        <td>a = <input type="number" id="a3" class="inElec" min="0">m/s<sup>2</sup>, θ =
+        <input type="number" id="a4" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+      <tr>
+        <td>q<sub>1</sub> = <input type="number" id="q1" class="inElec">C</td>
+        <td>r<sub>1</sub>, or d = <input type="number" id="r4" class="inElec" min="0">m, θ =
+        <input type="number" id="r4a" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+      <tr>
+        <td>q<sub>2</sub> = <input type="number" id="q2" class="inElec">C</td>
+        <td>r<sub>2</sub> = <input type="number" id="r5" class="inElec" min="0">m, θ =
+        <input type="number" id="r5a" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+      <tr>
+        <td>q<sub>3</sub> = <input type="number" id="q3" class="inElec">C</td>
+        <td>r<sub>3</sub> = <input type="number" id="r6" class="inElec" min="0">m, θ =
+        <input type="number" id="r6a" class="inElec" min="0" max="360">° ATH</td>
+      </tr>
+    </table>
   </div>
 
   <div id="magnets" class="content">
     <h2>Chapter 3: Magnetic Fields</h2>
-    <form>
-
-    </form>
+    <table>
+      <tr>
+        <td>Calculate remaining variables: <button id="submit3" type="button" onclick="calculateMagn()">Calculate</button></td>
+        <td>θ = <input type="number" id="th" class="inMagn">° between B & v or B & I</td>
+      </tr>
+      <tr>
+        <td>F<sub>m</sub> = <input type="number" id="f5" class="inMagn" min="0">N
+        <td>v = <input type="number" id="v5" class="inMagn" min="0">m/s
+      </tr>
+      <tr>
+        <td>B = <input type="number" id="b" class="inMagn" min"0">T
+        <td>L = <input type="number" id="l" class="inMagn" min="0">m
+      </tr>
+      <tr>
+        <td>q = <input type="number" id="q4" class="inMagn">C</td>
+        <td>I = <input type="number" id="i" class="inMagn" min="0">A
+      </tr>
+    </table>
   </div>
 
   <script src="sketch.js"></script>
